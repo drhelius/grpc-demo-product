@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"sync"
 
-	gw "github.com/drhelius/grpc-demo-product/internal/grpc/product"
+	gw "github.com/drhelius/grpc-demo-proto/product"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"google.golang.org/grpc"
 )

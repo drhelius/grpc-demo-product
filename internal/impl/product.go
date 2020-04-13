@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	pb "github.com/drhelius/grpc-demo-product/internal/grpc/product"
+	pb "github.com/drhelius/grpc-demo-proto/product"
 )
 
 type Server struct {
