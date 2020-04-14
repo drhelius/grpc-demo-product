@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/drhelius/grpc-demo-product/internal/impl"
-	pb "github.com/drhelius/grpc-demo-proto/product"
+	"github.com/drhelius/grpc-demo-proto/product"
 	"google.golang.org/grpc"
 )
 
@@ -21,7 +21,7 @@ func Serve(wg *sync.WaitGroup, port string) {
 
 	s := grpc.NewServer()
 
-	pb.RegisterProductServiceServer(s, &impl.Server{})
+	product.RegisterProductServiceServer(s, &impl.Server{})
 
 	log.Printf("Serving GRPC on localhost:%s ...", port)
 

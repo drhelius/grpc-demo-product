@@ -4,23 +4,23 @@ import (
 	"context"
 	"log"
 
-	pb "github.com/drhelius/grpc-demo-proto/product"
+	"github.com/drhelius/grpc-demo-proto/product"
 )
 
 type Server struct {
-	pb.UnimplementedProductServiceServer
+	product.UnimplementedProductServiceServer
 }
 
-func (s *Server) Create(ctx context.Context, in *pb.CreateProductReq) (*pb.CreateProductResp, error) {
+func (s *Server) Create(ctx context.Context, in *product.CreateProductReq) (*product.CreateProductResp, error) {
 
 	log.Printf("Received: %s", in.GetProduct())
 
-	return &pb.CreateProductResp{Id: "testid"}, nil
+	return &product.CreateProductResp{Id: "testid"}, nil
 }
 
-func (s *Server) Read(ctx context.Context, in *pb.ReadProductReq) (*pb.ReadProductResp, error) {
+func (s *Server) Read(ctx context.Context, in *product.ReadProductReq) (*product.ReadProductResp, error) {
 
 	log.Printf("Received: %v", in.GetId())
 
-	return &pb.ReadProductResp{Product: &pb.Product{Id: "demoid", Name: "demoname", Description: "demodesc", Price: 100}}, nil
+	return &product.ReadProductResp{Product: &product.Product{Id: "demoid", Name: "demoname", Description: "demodesc", Price: 100}}, nil
 }
