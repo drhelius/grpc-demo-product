@@ -3,7 +3,9 @@ package impl
 import (
 	"context"
 	"log"
+	"strconv"
 
+	"github.com/Pallinder/go-randomdata"
 	"github.com/drhelius/grpc-demo-proto/product"
 )
 
@@ -13,14 +15,22 @@ type Server struct {
 
 func (s *Server) Create(ctx context.Context, in *product.CreateProductReq) (*product.CreateProductResp, error) {
 
-	log.Printf("[Product] Received: %s", in.GetProduct())
+	log.Printf("[Product] Create Req: %v", in.GetProduct())
 
-	return &product.CreateProductResp{Id: "testid"}, nil
+	r := &product.CreateProductResp{Id: strconv.Itoa(randomdata.Number(1000000))}
+
+	log.Printf("[Product] Create Res: %v", r.GetId())
+
+	return r, nil
 }
 
 func (s *Server) Read(ctx context.Context, in *product.ReadProductReq) (*product.ReadProductResp, error) {
 
-	log.Printf("[Product] Received: %v", in.GetId())
+	log.Printf("[Product] Read Req: %v", in.GetId())
 
-	return &product.ReadProductResp{Product: &product.Product{Id: "demoid", Name: "demoname", Description: "demodesc", Price: 100}}, nil
+	r := &product.ReadProductResp{Product: &product.Product{Id: in.GetId(), Name: randomdata.SillyName(), Description: randomdata.Street(), Price: int32(randomdata.Number(1000))}}
+
+	log.Printf("[Product] Read Res: %v", r.GetProduct())
+
+	return r, nil
 }
