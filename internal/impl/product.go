@@ -28,7 +28,7 @@ func (s *Server) Read(ctx context.Context, in *product.ReadProductReq) (*product
 
 	log.Printf("[Product] Read Req: %v", in.GetId())
 
-	r := &product.ReadProductResp{Product: &product.Product{Id: in.GetId(), Name: randomdata.SillyName(), Description: randomdata.Street(), Price: int32(randomdata.Number(1000))}}
+	r := &product.ReadProductResp{Product: &product.Product{Id: in.GetId(), Name: randomdata.SillyName(), Description: randomdata.Paragraph(), Price: int32(randomdata.Number(1000))}}
 
 	log.Printf("[Product] Read Res: %v", r.GetProduct())
 
